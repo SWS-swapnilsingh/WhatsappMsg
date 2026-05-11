@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Open in WhatsApp</title>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -14,34 +14,36 @@
       --green-light: #dcfce7;
       --bg: #f0fdf4;
       --card: #ffffff;
-      --text: #0f2218;
-      --muted: #4b7a5e;
-      --border: #bbf7d0;
-      --shadow: 0 20px 60px rgba(18, 140, 126, 0.15);
-      --radius: 18px;
+      --text: #0f1a13;
+      --muted: #6b7280;
+      --border: #d1fae5;
+      --error: #ef4444;
+      --radius: 16px;
     }
 
     body {
-      min-height: 100vh;
+      font-family: 'DM Sans', sans-serif;
       background: var(--bg);
+      min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: 'DM Sans', sans-serif;
-      padding: 24px;
+      padding: 20px;
       background-image:
-        radial-gradient(ellipse at 20% 20%, rgba(37,211,102,0.12) 0%, transparent 60%),
-        radial-gradient(ellipse at 80% 80%, rgba(18,140,126,0.10) 0%, transparent 60%);
+        radial-gradient(ellipse at 10% 20%, #bbf7d0 0%, transparent 50%),
+        radial-gradient(ellipse at 90% 80%, #a7f3d0 0%, transparent 50%);
     }
 
     .card {
       background: var(--card);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 48px 44px 44px;
+      border-radius: 28px;
+      padding: 48px 40px 40px;
       width: 100%;
-      max-width: 460px;
-      border: 1.5px solid var(--border);
+      max-width: 440px;
+      box-shadow:
+        0 4px 6px rgba(0,0,0,0.04),
+        0 20px 60px rgba(37, 211, 102, 0.12);
+      border: 1px solid var(--border);
       position: relative;
       overflow: hidden;
     }
@@ -50,259 +52,256 @@
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0;
-      height: 5px;
-      background: linear-gradient(90deg, var(--green), var(--green-dark));
-      border-radius: var(--radius) var(--radius) 0 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--green-dark), var(--green));
     }
 
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 32px;
-    }
-
-    .logo-icon {
-      width: 48px;
-      height: 48px;
-      background: linear-gradient(135deg, var(--green), var(--green-dark));
-      border-radius: 14px;
+    .icon-wrap {
+      width: 64px;
+      height: 64px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, var(--green-dark), var(--green));
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 6px 20px rgba(37,211,102,0.35);
-      flex-shrink: 0;
+      margin-bottom: 24px;
+      box-shadow: 0 8px 20px rgba(37, 211, 102, 0.35);
     }
 
-    .logo-icon svg { width: 26px; height: 26px; fill: white; }
+    .icon-wrap svg {
+      width: 36px;
+      height: 36px;
+      fill: white;
+    }
 
-    .logo-text h1 {
+    h1 {
       font-family: 'Syne', sans-serif;
-      font-size: 1.35rem;
+      font-size: 26px;
       font-weight: 800;
       color: var(--text);
-      line-height: 1;
+      line-height: 1.2;
+      margin-bottom: 6px;
     }
 
-    .logo-text p {
-      font-size: 0.8rem;
+    .subtitle {
+      font-size: 14px;
       color: var(--muted);
-      margin-top: 3px;
+      margin-bottom: 32px;
     }
 
     label {
       display: block;
-      font-size: 0.78rem;
+      font-size: 12px;
       font-weight: 500;
-      color: var(--muted);
-      letter-spacing: 0.08em;
       text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
       margin-bottom: 8px;
+    }
+
+    .field { margin-bottom: 20px; }
+
+    select, input[type="tel"] {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      color: var(--text);
+      background: #f9fafb;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 40px;
+      cursor: pointer;
+    }
+
+    select:focus, input[type="tel"]:focus {
+      border-color: var(--green);
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(37, 211, 102, 0.15);
     }
 
     .phone-row {
       display: flex;
       gap: 10px;
-      margin-bottom: 20px;
     }
 
-    .country-select-wrap {
-      position: relative;
+    .phone-row select {
       flex: 0 0 130px;
+      font-size: 14px;
     }
 
-    select {
-      width: 100%;
-      appearance: none;
-      -webkit-appearance: none;
-      background: var(--green-light);
-      border: 1.5px solid var(--border);
-      border-radius: 12px;
-      padding: 14px 36px 14px 14px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.9rem;
-      font-weight: 500;
-      color: var(--text);
-      cursor: pointer;
-      outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
-      height: 52px;
-    }
-
-    select:focus {
-      border-color: var(--green);
-      box-shadow: 0 0 0 3px rgba(37,211,102,0.18);
-    }
-
-    .country-select-wrap::after {
-      content: '▾';
-      position: absolute;
-      right: 12px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--muted);
-      pointer-events: none;
-      font-size: 0.8rem;
-    }
-
-    input[type="tel"] {
+    .phone-row input {
       flex: 1;
-      border: 1.5px solid var(--border);
-      border-radius: 12px;
-      padding: 14px 16px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 1rem;
-      color: var(--text);
-      outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
-      background: #fff;
-      height: 52px;
     }
 
-    input[type="tel"]::placeholder { color: #a3c4af; }
-
-    input[type="tel"]:focus {
-      border-color: var(--green);
-      box-shadow: 0 0 0 3px rgba(37,211,102,0.18);
+    .error-msg {
+      display: none;
+      font-size: 13px;
+      color: var(--error);
+      margin-top: 8px;
     }
 
-    .btn {
+    .error-msg.show { display: block; }
+
+    button {
       width: 100%;
       padding: 16px;
-      background: linear-gradient(135deg, var(--green), var(--green-dark));
-      color: white;
       border: none;
-      border-radius: 14px;
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, var(--green-dark), var(--green));
+      color: white;
       font-family: 'Syne', sans-serif;
-      font-size: 1rem;
+      font-size: 16px;
       font-weight: 700;
       cursor: pointer;
+      letter-spacing: 0.02em;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
-      box-shadow: 0 8px 24px rgba(37,211,102,0.35);
+      margin-top: 8px;
       transition: transform 0.15s, box-shadow 0.15s, opacity 0.15s;
-      letter-spacing: 0.02em;
-      margin-top: 4px;
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
     }
 
-    .btn:hover {
+    button:hover {
       transform: translateY(-2px);
-      box-shadow: 0 12px 32px rgba(37,211,102,0.45);
+      box-shadow: 0 10px 28px rgba(37, 211, 102, 0.5);
     }
 
-    .btn:active { transform: translateY(0); }
-
-    .btn svg { width: 20px; height: 20px; fill: white; }
-
-    .error {
-      display: none;
-      background: #fff1f1;
-      border: 1px solid #fca5a5;
-      color: #dc2626;
-      border-radius: 10px;
-      padding: 10px 14px;
-      font-size: 0.85rem;
-      margin-top: 14px;
+    button:active {
+      transform: translateY(0);
+      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
     }
 
-    .hint {
+    button svg {
+      width: 18px;
+      height: 18px;
+      fill: white;
+      flex-shrink: 0;
+    }
+
+    .footer-note {
       text-align: center;
-      font-size: 0.75rem;
+      font-size: 12px;
       color: var(--muted);
-      margin-top: 18px;
+      margin-top: 24px;
     }
 
-    .hint span { color: var(--green-dark); font-weight: 500; }
+    @media (max-width: 480px) {
+      .card {
+        padding: 36px 24px 28px;
+        border-radius: 22px;
+      }
+      h1 { font-size: 22px; }
+      .phone-row select { flex: 0 0 110px; }
+    }
   </style>
 </head>
 <body>
-  <div class="card">
-    <div class="logo">
-      <div class="logo-icon">
-        <!-- WhatsApp icon -->
-        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-          <path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.857L2 30l7.347-1.926A13.93 13.93 0 0 0 16 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 25.4a11.34 11.34 0 0 1-5.795-1.587l-.415-.246-4.357 1.142 1.163-4.249-.27-.435A11.36 11.36 0 0 1 4.6 16C4.6 9.703 9.703 4.6 16 4.6c6.297 0 11.4 5.103 11.4 11.4 0 6.297-5.103 11.4-11.4 11.4zm6.258-8.54c-.343-.171-2.03-1.001-2.344-1.116-.315-.114-.545-.171-.774.171-.23.343-.887 1.116-1.087 1.345-.2.228-.4.257-.742.086-.343-.172-1.447-.533-2.756-1.7-1.019-.909-1.706-2.031-1.907-2.374-.2-.343-.021-.528.15-.699.155-.155.343-.4.515-.6.172-.2.229-.343.343-.572.115-.229.057-.429-.028-.6-.086-.172-.775-1.868-1.061-2.558-.28-.672-.564-.58-.775-.59l-.657-.012c-.229 0-.6.086-.915.429-.314.343-1.2 1.173-1.2 2.86s1.229 3.317 1.4 3.546c.172.228 2.42 3.696 5.863 5.185.82.354 1.46.566 1.958.724.823.261 1.572.225 2.163.137.66-.099 2.03-.83 2.315-1.633.286-.8.286-1.487.2-1.63-.085-.143-.314-.229-.657-.4z"/>
-        </svg>
-      </div>
-      <div class="logo-text">
-        <h1>WhatsApp Link</h1>
-        <p>Open any number in WhatsApp</p>
-      </div>
-    </div>
 
-    <label for="country">Country Code</label>
-    <div class="phone-row">
-      <div class="country-select-wrap">
-        <select id="country">
-          <option value="91">🇮🇳 +91</option>
-          <option value="1">🇺🇸 +1</option>
-          <option value="44">🇬🇧 +44</option>
-          <option value="61">🇦🇺 +61</option>
-          <option value="49">🇩🇪 +49</option>
-          <option value="33">🇫🇷 +33</option>
-          <option value="81">🇯🇵 +81</option>
-          <option value="86">🇨🇳 +86</option>
-          <option value="82">🇰🇷 +82</option>
-          <option value="971">🇦🇪 +971</option>
-          <option value="966">🇸🇦 +966</option>
-          <option value="92">🇵🇰 +92</option>
-          <option value="880">🇧🇩 +880</option>
-          <option value="94">🇱🇰 +94</option>
-          <option value="977">🇳🇵 +977</option>
-          <option value="60">🇲🇾 +60</option>
-          <option value="65">🇸🇬 +65</option>
-          <option value="62">🇮🇩 +62</option>
-          <option value="63">🇵🇭 +63</option>
-          <option value="66">🇹🇭 +66</option>
-          <option value="55">🇧🇷 +55</option>
-          <option value="52">🇲🇽 +52</option>
-          <option value="27">🇿🇦 +27</option>
-          <option value="234">🇳🇬 +234</option>
-          <option value="20">🇪🇬 +20</option>
-          <option value="90">🇹🇷 +90</option>
-          <option value="98">🇮🇷 +98</option>
-          <option value="7">🇷🇺 +7</option>
-          <option value="39">🇮🇹 +39</option>
-          <option value="34">🇪🇸 +34</option>
-        </select>
-      </div>
-      <input type="tel" id="phone" placeholder="Enter mobile number" inputmode="numeric" maxlength="15" />
-    </div>
-
-    <button class="btn" onclick="openWhatsApp()">
-      <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-        <path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.857L2 30l7.347-1.926A13.93 13.93 0 0 0 16 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 25.4a11.34 11.34 0 0 1-5.795-1.587l-.415-.246-4.357 1.142 1.163-4.249-.27-.435A11.36 11.36 0 0 1 4.6 16C4.6 9.703 9.703 4.6 16 4.6c6.297 0 11.4 5.103 11.4 11.4 0 6.297-5.103 11.4-11.4 11.4zm6.258-8.54c-.343-.171-2.03-1.001-2.344-1.116-.315-.114-.545-.171-.774.171-.23.343-.887 1.116-1.087 1.345-.2.228-.4.257-.742.086-.343-.172-1.447-.533-2.756-1.7-1.019-.909-1.706-2.031-1.907-2.374-.2-.343-.021-.528.15-.699.155-.155.343-.4.515-.6.172-.2.229-.343.343-.572.115-.229.057-.429-.028-.6-.086-.172-.775-1.868-1.061-2.558-.28-.672-.564-.58-.775-.59l-.657-.012c-.229 0-.6.086-.915.429-.314.343-1.2 1.173-1.2 2.86s1.229 3.317 1.4 3.546c.172.228 2.42 3.696 5.863 5.185.82.354 1.46.566 1.958.724.823.261 1.572.225 2.163.137.66-.099 2.03-.83 2.315-1.633.286-.8.286-1.487.2-1.63-.085-.143-.314-.229-.657-.4z"/>
-      </svg>
-      Open in WhatsApp
-    </button>
-
-    <div class="error" id="error">⚠️ Please enter a valid phone number.</div>
-
-    <p class="hint">Entering <span>9876543210</span> with <span>+91</span> opens <span>wa.me/919876543210</span></p>
+<div class="card">
+  <div class="icon-wrap">
+    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+      <path d="M16 2C8.27 2 2 8.27 2 16c0 2.44.65 4.73 1.79 6.72L2 30l7.51-1.76A13.93 13.93 0 0016 30c7.73 0 14-6.27 14-14S23.73 2 16 2zm0 25.5c-2.23 0-4.32-.6-6.12-1.65l-.44-.26-4.46 1.04 1.07-4.34-.29-.46A11.44 11.44 0 014.5 16C4.5 9.6 9.6 4.5 16 4.5S27.5 9.6 27.5 16 22.4 27.5 16 27.5zm6.3-8.56c-.35-.17-2.04-1-2.35-1.12-.32-.11-.55-.17-.78.18-.23.35-.88 1.12-1.08 1.35-.2.23-.4.26-.74.09-.35-.17-1.47-.54-2.8-1.72-1.03-.92-1.73-2.06-1.93-2.41-.2-.35-.02-.54.15-.71.16-.16.35-.4.52-.61.17-.2.23-.35.35-.58.12-.23.06-.44-.03-.61-.09-.17-.78-1.87-1.07-2.56-.28-.67-.57-.58-.78-.59l-.67-.01c-.23 0-.61.09-.93.44-.32.35-1.22 1.19-1.22 2.9s1.25 3.37 1.42 3.6c.17.23 2.45 3.74 5.93 5.24.83.36 1.47.57 1.98.73.83.26 1.59.22 2.18.13.67-.1 2.04-.83 2.33-1.63.29-.8.29-1.49.2-1.63-.08-.15-.3-.23-.65-.4z"/>
+    </svg>
   </div>
 
-  <script>
-    function openWhatsApp() {
-      const code = document.getElementById('country').value.trim();
-      const phone = document.getElementById('phone').value.trim().replace(/\D/g, '');
-      const err = document.getElementById('error');
+  <h1>Open in WhatsApp</h1>
+  <p class="subtitle">Enter a phone number to start a chat instantly.</p>
 
-      if (!phone || phone.length < 6) {
-        err.style.display = 'block';
-        return;
-      }
+  <div class="field">
+    <label>Country &amp; Phone Number</label>
+    <div class="phone-row">
+      <select id="countryCode" aria-label="Country code">
+        <option value="91">🇮🇳 +91</option>
+        <option value="1">🇺🇸 +1</option>
+        <option value="44">🇬🇧 +44</option>
+        <option value="61">🇦🇺 +61</option>
+        <option value="971">🇦🇪 +971</option>
+        <option value="966">🇸🇦 +966</option>
+        <option value="65">🇸🇬 +65</option>
+        <option value="60">🇲🇾 +60</option>
+        <option value="92">🇵🇰 +92</option>
+        <option value="880">🇧🇩 +880</option>
+        <option value="94">🇱🇰 +94</option>
+        <option value="977">🇳🇵 +977</option>
+        <option value="20">🇪🇬 +20</option>
+        <option value="27">🇿🇦 +27</option>
+        <option value="234">🇳🇬 +234</option>
+        <option value="254">🇰🇪 +254</option>
+        <option value="49">🇩🇪 +49</option>
+        <option value="33">🇫🇷 +33</option>
+        <option value="39">🇮🇹 +39</option>
+        <option value="34">🇪🇸 +34</option>
+        <option value="55">🇧🇷 +55</option>
+        <option value="52">🇲🇽 +52</option>
+        <option value="54">🇦🇷 +54</option>
+        <option value="57">🇨🇴 +57</option>
+        <option value="81">🇯🇵 +81</option>
+        <option value="82">🇰🇷 +82</option>
+        <option value="86">🇨🇳 +86</option>
+        <option value="7">🇷🇺 +7</option>
+        <option value="31">🇳🇱 +31</option>
+        <option value="46">🇸🇪 +46</option>
+      </select>
+      <input
+        type="tel"
+        id="phoneInput"
+        placeholder="98765 43210"
+        inputmode="numeric"
+        maxlength="15"
+        aria-label="Phone number"
+      />
+    </div>
+    <div class="error-msg" id="errorMsg">Please enter a valid phone number.</div>
+  </div>
 
-      err.style.display = 'none';
-      const fullNumber = code + phone;
-      window.open('https://wa.me/' + fullNumber, '_blank');
+  <button id="openBtn" onclick="openWhatsApp()">
+    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+      <path d="M16 2C8.27 2 2 8.27 2 16c0 2.44.65 4.73 1.79 6.72L2 30l7.51-1.76A13.93 13.93 0 0016 30c7.73 0 14-6.27 14-14S23.73 2 16 2zm0 25.5c-2.23 0-4.32-.6-6.12-1.65l-.44-.26-4.46 1.04 1.07-4.34-.29-.46A11.44 11.44 0 014.5 16C4.5 9.6 9.6 4.5 16 4.5S27.5 9.6 27.5 16 22.4 27.5 16 27.5zm6.3-8.56c-.35-.17-2.04-1-2.35-1.12-.32-.11-.55-.17-.78.18-.23.35-.88 1.12-1.08 1.35-.2.23-.4.26-.74.09-.35-.17-1.47-.54-2.8-1.72-1.03-.92-1.73-2.06-1.93-2.41-.2-.35-.02-.54.15-.71.16-.16.35-.4.52-.61.17-.2.23-.35.35-.58.12-.23.06-.44-.03-.61-.09-.17-.78-1.87-1.07-2.56-.28-.67-.57-.58-.78-.59l-.67-.01c-.23 0-.61.09-.93.44-.32.35-1.22 1.19-1.22 2.9s1.25 3.37 1.42 3.6c.17.23 2.45 3.74 5.93 5.24.83.36 1.47.57 1.98.73.83.26 1.59.22 2.18.13.67-.1 2.04-.83 2.33-1.63.29-.8.29-1.49.2-1.63-.08-.15-.3-.23-.65-.4z"/>
+    </svg>
+    Open WhatsApp Chat
+  </button>
+
+  <p class="footer-note">Opens WhatsApp — no account needed on your end.</p>
+</div>
+
+<script>
+  document.getElementById('phoneInput').addEventListener('input', function () {
+    this.value = this.value.replace(/\D/g, '');
+    document.getElementById('errorMsg').classList.remove('show');
+  });
+
+  document.getElementById('phoneInput').addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') openWhatsApp();
+  });
+
+  function openWhatsApp() {
+    const code = document.getElementById('countryCode').value;
+    const phone = document.getElementById('phoneInput').value.trim();
+
+    if (!phone || phone.length < 5) {
+      document.getElementById('errorMsg').classList.add('show');
+      document.getElementById('phoneInput').focus();
+      return;
     }
 
-    // Allow pressing Enter key too
-    document.getElementById('phone').addEventListener('keydown', function(e) {
-      if (e.key === 'Enter') openWhatsApp();
-    });
-  </script>
+    const cleanPhone = phone.replace(/^0+/, '');
+    const fullNumber = code + cleanPhone;
+    window.open('https://wa.me/' + fullNumber, '_blank');
+  }
+</script>
+
 </body>
 </html>
